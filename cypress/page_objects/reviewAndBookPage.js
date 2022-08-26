@@ -3,7 +3,7 @@ export class ReviewAndBookPage {
     restartTimer() {
         this.restartButton.click()
         cy.contains('p','Restart timer')
-        this.restartSmallButton.click()
+        this.restartSmallButton.should('be.visible').click()
     }
 
     get bookThisAppointmentButton() {
@@ -23,12 +23,11 @@ export class ReviewAndBookPage {
     }
 
     get restartSmallButton() {
-        cy.wait(1000)
-        return cy.get('.pom-btn__small').contains('Restart').should('be.visible')
+        return cy.get('.pom-btn__small').contains('Restart')
     } 
 
     get pageLabel() {
-        return cy.get('div.justify-center p').should('contain', 'Review and book')
+        return cy.contains('Review and book')
     }
 
     get timer() {

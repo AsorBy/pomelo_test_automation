@@ -2,7 +2,7 @@ import { ReasonForVisitModal } from "./components/reasonForVisitModal";
 
 export class PatientInformationPage {
     navigate() {
-        cy.visit('https://preprod-go.pomelopatient.com/#/')
+        cy.visit('')
     }
 
     fillInFormByPatientData(patienJson) {
@@ -65,10 +65,7 @@ export class PatientInformationPage {
     }
 
     get pageLabel() {
-        return cy.get('div.justify-center p').contains('Patient information')
+        return cy.contains('Patient information')
     }
 
-    get pageLabel() {
-        return cy.get('div.justify-center p').should('contain', 'Patient information')
-    }
 }

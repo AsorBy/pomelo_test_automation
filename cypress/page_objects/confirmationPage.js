@@ -5,8 +5,7 @@ export class ConfirmationPage {
     }
 
     get confirmationMessage() {
-        cy.wait(1000)
-        return cy.get('span p').contains('Your appointment has been booked!')
+        return cy.contains('Your appointment has been booked!')
     }
 
 }

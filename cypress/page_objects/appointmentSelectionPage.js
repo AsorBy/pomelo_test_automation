@@ -1,17 +1,14 @@
 export class AppointmentSelectionPage {
 
     setAppoinment() {
-        this.waitUntilIntercept()     
+        cy.intercept('POST','/events/preprod').as('event')     
         this.nextAvailablities.click({force: true})
-        this.waitUntilIntercept()
+        cy.wait('@event');
+        cy.intercept('POST','/events/preprod').as('event')  
         this.firstTimeslot.click({force: true})
-        this.waitUntilIntercept()
+        cy.wait('@event');
         this.firstProvider.click({force: true})
-    }
-
-    waitUntilIntercept() {
-        cy.intercept('POST','/events/preprod').as('event')
-        cy.wait('@event', {timeout: 10000})
+        cy.url().should('contain', '/review')
     }
 
     get nextAvailablities() {        
@@ -27,6 +24,6 @@ export class AppointmentSelectionPage {
     }    
     
     get pageLabel() {
-        return cy.get('div.justify-center p', { timeout: 10000 }).contains('Appointment selection')
+        return cy.contains('Appointment selection')
     }
 }

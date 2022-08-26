@@ -5,14 +5,14 @@ import { ConfirmationPage } from "./confirmationPage";
 import { AppointmentCancellationPage } from "./appointmentCancellationPage";
 
 export class App {
-    partientInformationPage
+    patientInformationPage
     appointmentSelectionPage
     reviewAndBookPage
     confirmationPage
     appointmentCancellationPage
 
     constructor() {
-        this.partientInformationPage = new PatientInformationPage();
+        this.patientInformationPage = new PatientInformationPage();
         this.appointmentSelectionPage = new AppointmentSelectionPage();
         this.reviewAndBookPage = new ReviewAndBookPage();
         this.confirmationPage = new ConfirmationPage();

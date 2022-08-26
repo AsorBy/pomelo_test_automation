@@ -9,8 +9,7 @@ export class AppointmentCancellationPage {
     }
     
     get cancelationMessage() {
-        cy.wait(2000)
-        return cy.get('span p').contains('Your appointment has been cancelled!')
+        return cy.contains('Your appointment has been cancelled!')
     }
 
 }

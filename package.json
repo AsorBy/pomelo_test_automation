@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress_open": "npx cypress open",
     "cypress_open_mobile": "npx cypress open --viewPort=468",
-    "cypress_open_qa_env": "npx cypress open --base_url = "
+    "cypress_open_preprod_env": "cypress open --config baseUrl=https://preprod-go.pomelopatient.com/#/ --env env=preprod"
   },
   "keywords": [],
   "author": "",
