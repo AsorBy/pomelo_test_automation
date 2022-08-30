@@ -1,8 +1,8 @@
-import { PatientInformationPage } from "../page_objects/patientInformationPage"
-import { AppointmentSelectionPage } from "./appointmentSelectionPage";
-import { ReviewAndBookPage } from "./reviewAndBookPage";
-import { ConfirmationPage } from "./confirmationPage";
-import { AppointmentCancellationPage } from "./appointmentCancellationPage";
+import {PatientInformationPage} from "./patientInformationPage"
+import {AppointmentSelectionPage} from "./appointmentSelectionPage";
+import {ReviewAndBookPage} from "./reviewAndBookPage";
+import {ConfirmationPage} from "./confirmationPage";
+import {AppointmentCancellationPage} from "./appointmentCancellationPage";
 
 export class App {
     patientInformationPage
@@ -19,10 +19,21 @@ export class App {
         this.appointmentCancellationPage = new AppointmentCancellationPage();
     }
 
+    selectLanguage(language){
+        cy.get('button[name="language-select"]').click()
+        cy.get('li[role = "menuitem"]').contains(language).click()
+    }
+
     getDateWithChanges(addDate=0) {
         let date = new Date();
         date.setDate(date.getDate() + addDate);
-        const newDate = date.toISOString()
-        return newDate.replace(0, 10)
+        const newDate = date.toISOString();
+        return newDate.replace(0, 10);
+    }
+
+    getUrlsFromEmail(email) {
+        let decodedBody = Buffer.from(email.parts[0].body.data, "base64").toString("utf-8").replaceAll('amp;', '')
+        const extractUrls = require("extract-urls");
+        return extractUrls(decodedBody)
     }
 }

@@ -13,6 +13,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^10.6.0"
+    "cypress": "^10.7.0",
+    "eslint": "^8.23.0",
+    "gmail-tester-extended": "^1.1.2",
+    "jsdom": "^20.0.0"
+  },
+  "dependencies": {
+    "extract-urls": "^1.3.2",
+    "nodemailer": "^6.7.8"
   }
 }

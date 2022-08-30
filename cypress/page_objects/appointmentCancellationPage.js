@@ -1,15 +1,15 @@
 export class AppointmentCancellationPage {
 
     get confirmCancelAppointmentButton() {
-        return cy.contains('button','Yes, cancel this appointment')
+        return cy.get('button[data-test-id = "cancel-appt-btn"]');
     }
 
     get backToHomePageButton() {
-        return cy.get('button[aria-label="Back to homepage"]')
+        return cy.get('button[aria-label="Back to homepage"]');
     }
     
-    get cancelationMessage() {
-        return cy.contains('Your appointment has been cancelled!')
+    get cancellationMessage() {
+        return cy.contains('Your appointment has been cancelled!');
     }
 
 }
