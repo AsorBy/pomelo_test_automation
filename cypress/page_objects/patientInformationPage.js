@@ -11,7 +11,7 @@ export class PatientInformationPage {
             this.lastNameInput.type(patient.lastName);
             this.healthInsuranceNumberInput.type(patient.hin);    
             this.sequentialNumberInput.type(patient.hinSequence);
-            this.yearInput.should('have.value', patient.year)
+            this.yearInput.should('have.value', patient.year);
             this.radioButtonByText(patient.sex).click();    
             this.mobilePhoneInput.type(patient.phone);    
             this.radioButtonByText(patient.language).click();
@@ -20,52 +20,52 @@ export class PatientInformationPage {
     }
 
     radioButtonByText(textBtn){
-        return cy.get(".el-radio-button__inner").contains(textBtn)
+        return cy.get(".el-radio-button__inner").contains(textBtn);
     }
 
     get reasonForVisitModal() {
-        const reasonModal = new ReasonForVisitModal()
+        const reasonModal = new ReasonForVisitModal();
         return reasonModal;
     }
 
     get firstNameInput() {
-        return cy.get("input[name='firstName']")
+        return cy.get("input[name='firstName']");
     }
 
     get lastNameInput() {
-        return cy.get("input[name='lastName']")
+        return cy.get("input[name='lastName']");
     }
 
     get healthInsuranceNumberInput() {
-        return cy.get("input[name='hin']")
+        return cy.get("input[name='hin']");
     }
 
     get sequentialNumberInput(){
-        return cy.get("input[name='hinSequence']")
+        return cy.get("input[name='hinSequence']");
     }
 
     get yearInput(){
-        return cy.get("input[id$='24']")
+        return cy.get("input[id$='24']");
     }
 
     get emailInput(){
-        return cy.get("input[type='email']")
+        return cy.get("input[type='email']");
     }
 
     get mobilePhoneInput(){
-        return cy.get("input[name='mobilePhone']")
+        return cy.get("input[name='mobilePhone']");
     }
 
     get agreementCheckbox(){
-        return cy.get(".el-checkbox__inner")
+        return cy.get(".el-checkbox__inner");
     }
 
     get continueButton(){
-        return cy.contains('button', 'Continue')
+        return cy.contains('button', 'Continue');
     }
 
     get pageLabel() {
-        return cy.contains('Patient information')
+        return cy.contains('Patient information');
     }
 
 }

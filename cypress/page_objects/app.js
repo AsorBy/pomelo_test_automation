@@ -22,7 +22,7 @@ export class App {
     getDateWithChanges(addDate=0) {
         let date = new Date();
         date.setDate(date.getDate() + addDate);
-        const newDate = date.toISOString()
-        return newDate.replace(0, 10)
+        const newDate = date.toISOString();
+        return newDate.replace(0, 10);
     }
 }
