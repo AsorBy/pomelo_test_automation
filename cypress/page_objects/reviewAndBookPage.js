@@ -2,8 +2,10 @@
 export class ReviewAndBookPage {
   restartTimer() {
     this.restartButton.click();
+    cy.intercept('/hub/RenewAvailability').as("renewAvailability");
     cy.contains('p', 'Restart timer');
     this.restartSmallButton.should('be.visible').click();
+    cy.wait('@renewAvailability');
   }
 
   get bookThisAppointmentButton() {
@@ -12,10 +14,6 @@ export class ReviewAndBookPage {
 
   get selectDifferentAppointmentButton() {
     return cy.contains('button', 'Select a different appointment');
-  }
-
-  get describeSimptomsTextBox() {
-    return cy.get('textarea[placeholder="Describe your symptoms"]');
   }
 
   get restartButton() {
@@ -35,11 +33,16 @@ export class ReviewAndBookPage {
   }
 
   checkTimer() {
-    this.timer.then((time1) => {
+    cy.wait(2000);
+    this.timer
+        .invoke('text')
+        .then((text1) => {
       this.restartTimer();
-      cy.wait(2000);
-      this.timer.then((time2) => {
-        expect(time1).not.equals(time2);
+      this.timer
+          .invoke('text')
+          .should((text2) => {
+        expect(text1).not.equals(text2);
+        debugger
       });
     });
   }

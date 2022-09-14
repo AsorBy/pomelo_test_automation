@@ -1,19 +1,16 @@
 export class AppointmentSelectionPage {
 
-    setAppoinment() {
-        // cy.intercept('POST','/events/preprod').as('event') ;
-        // this.nextAvailablities.click({force: true});
-        // cy.wait('@event');
+    setAppoinmentByNumber(number) {
         cy.intercept('POST','/events/preprod').as('event');
-        this.firstTimeslot.click({force: true});
+        this.getTimeslotByNumber(number).click({force: true});
         cy.wait('@event');
         this.firstProvider.click();
         cy.url().should('contain', '/review');
     }
 
-    setAppoinmentByDaysAfter(daysAfter) {
+    setAppointmentByDaysBefore(daysBefore) {
         const date = new Date();
-        let newDate = new Date(date.setDate(date.getDate() + daysAfter))
+        let newDate = new Date(date.setDate(date.getDate() + daysBefore))
         let appointmentDayOfWeek = newDate.toDateString().slice(0,3)
         let appointmentDay = addZeroBefore(newDate.getDate())
         cy.intercept('POST','/events/preprod').as('event');
@@ -32,12 +29,12 @@ export class AppointmentSelectionPage {
     }
 
     getTimeslotByDay(dayOfWeek, day) {
-        return cy.get(`p[aria-label *= "availability on ${dayOfWeek + " " +  day}"]`).first()
+        return cy.get(`p[aria-label *= "availability on ${dayOfWeek + " " +  day}"]`).first();
     }
 
 
-    get firstTimeslot() {
-        return cy.get('div[class=mt-2] p').should('be.visible').first();
+    getTimeslotByNumber(number) {
+        return cy.get('div[class=mt-2] p').should('be.visible').eq(number);
     }
 
     get firstProvider() {

@@ -1,4 +1,4 @@
-import { ReasonForVisitModal } from "./components/reasonForVisitModal";
+import {ReasonForVisitModal} from "./components/reasonForVisitModal";
 
 export class PatientInformationPage {
     navigate() {
@@ -16,6 +16,10 @@ export class PatientInformationPage {
             this.mobilePhoneInput.type(patient.phone);    
             this.radioButtonByText(patient.language).click();
             this.emailInput.type(patient.email);
+            this.agreementCheckbox.click();
+            cy.intercept("POST", "hub/GetAppointmentTypeGroups").as("getAppointment");
+            this.continueButton.click();
+            cy.wait("@getAppointment");
         })
     }
 
@@ -24,8 +28,7 @@ export class PatientInformationPage {
     }
 
     get reasonForVisitModal() {
-        const reasonModal = new ReasonForVisitModal();
-        return reasonModal;
+        return new ReasonForVisitModal();
     }
 
     get firstNameInput() {

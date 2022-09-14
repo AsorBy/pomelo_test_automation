@@ -1,4 +1,18 @@
 export class ReasonForVisitModal {
+
+    searchForAvailabilitiesByCriteria(consultationType, postalCode, date) {
+        cy.log("When: User selects reason for visit in dropdown");
+        this.reasonForVisitDropdown.click();
+        this.scrollBar
+            .contains(consultationType)
+            .click();
+        this.postalCodeInput.type(postalCode);
+        cy.log("And: User selects date in datePicker and clicks search");
+        this.datePicker.invoke("val", date);
+            // .should("have.value", date);
+        this.searchButton.click();
+    }
+
     get reasonForVisitDropdown() {
         return cy.get('input[id="rfvInput"]');
     }

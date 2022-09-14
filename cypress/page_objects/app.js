@@ -36,4 +36,12 @@ export class App {
         const extractUrls = require("extract-urls");
         return extractUrls(decodedBody)
     }
+
+    convertPayload(requestBody) {
+        requestBody.split('&').reduce((json, value) => {
+                json[value.split('=')[0]] = value.split('=')[1];
+                return json;
+            },
+            {});
+    }
 }
