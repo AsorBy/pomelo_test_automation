@@ -1,9 +1,6 @@
 export class AppointmentSelectionPage {
 
     setAppoinment() {
-        // cy.intercept('POST','/events/preprod').as('event') ;
-        // this.nextAvailablities.click({force: true});
-        // cy.wait('@event');
         cy.intercept('POST','/events/preprod').as('event');
         this.firstTimeslot.click({force: true});
         cy.wait('@event');
@@ -32,7 +29,7 @@ export class AppointmentSelectionPage {
     }
 
     getTimeslotByDay(dayOfWeek, day) {
-        return cy.get(`p[aria-label *= "availability on ${dayOfWeek + " " +  day}"]`).first()
+        return cy.get(`p[aria-label *= "availability on ${dayOfWeek + " " +  day}"]`).first();
     }
 
 
