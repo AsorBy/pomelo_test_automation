@@ -28,7 +28,7 @@ export class App {
         let date = new Date();
         date.setDate(date.getDate() + addDate);
         const newDate = date.toISOString();
-        return newDate.replace(0, 10);
+        return newDate.slice(0, 10);
     }
 
     getUrlsFromEmail(email) {

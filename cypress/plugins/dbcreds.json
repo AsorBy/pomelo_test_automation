@@ -1,0 +1,7 @@
+{
+"user": "itechart",
+"password": "Pomelo123",
+"host": "jdbc:redshift://eventswarehouse.ca-a.events.pomelo.health/events_canada",
+"database": "None",
+"port": 5439
+}

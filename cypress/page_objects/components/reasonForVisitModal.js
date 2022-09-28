@@ -9,7 +9,6 @@ export class ReasonForVisitModal {
         this.postalCodeInput.type(postalCode);
         cy.log("And: User selects date in datePicker and clicks search");
         this.datePicker.invoke("val", date);
-            // .should("have.value", date);
         this.searchButton.click();
     }
 

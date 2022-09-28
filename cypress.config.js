@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+const sqlServer = require("cypress-sql-server");
 
 module.exports = defineConfig({
   requestTimeout: 12000,
@@ -9,8 +10,11 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       const path = require("path");
       const gmail = require("../pomelo_test_automation/node_modules/gmail-tester-extended");
+      const pg = require("pg");
       const POLL_INTERVAL = 5;
       const MAX_POLL_INTERVAL = 20;
+      const sqlServer = require('cypress-sql-server');
+
       // function getLogin(email) {
       //   let array = email.split('g');
       //   return array;
@@ -22,6 +26,8 @@ module.exports = defineConfig({
       async function  getToken() {
         return path.resolve('./cypress/plugins/token_cypress.json')
       }
+      tasks = sqlServer.loadDBPlugin(config.db);
+
       on('task', {
         'gmail:get-messages': async args => {
           return await gmail.get_messages(
@@ -29,10 +35,10 @@ module.exports = defineConfig({
               await getToken(),
               args.options
           );
-        }
-      });
-
-      on("task", {
+        },
+      // });
+      //
+      // on("task", {
         "gmail:getMessagesWithBody": async args => {
           const {from, to, subject, bodyText} = args;
           return await gmail.getMessageWithTextInBody(
@@ -45,8 +51,21 @@ module.exports = defineConfig({
               POLL_INTERVAL,
               MAX_POLL_INTERVAL
           );
+        },
+      // });
+      //
+      // on("task", {
+        DATABASE ({ sql, values }) {
+          const pool = new sqlServer.loadDBPlugin({
+            user: 'itechart',
+            host: 'jdbc:redshift://eventswarehouse.ca-a.events.pomelo.health/events_canada',
+            database: 'redshift',
+            password: 'Pomelo123',
+            port: 5439
+          });
+          return pool.query(sql, values);
         }
-      });
+      })
     },
   },
 });

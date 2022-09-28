@@ -8,7 +8,7 @@ export class PatientInformationPage {
     fillInFormByPatientData(patienJson) {
         cy.fixture(patienJson).then((patient) => {
             this.firstNameInput.type(patient.firstName);
-            this.lastNameInput.type(patient.lastName);
+            this.lastNameInput.type(patient.firstName);
             this.healthInsuranceNumberInput.type(patient.hin);    
             this.sequentialNumberInput.type(patient.hinSequence);
             this.yearInput.should('have.value', patient.year);

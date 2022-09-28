@@ -36,12 +36,12 @@ export class ReviewAndBookPage {
     cy.wait(2000);
     this.timer
         .invoke('text')
-        .then((text1) => {
+        .then((time1) => {
       this.restartTimer();
       this.timer
           .invoke('text')
-          .should((text2) => {
-        expect(text1).not.equals(text2);
+          .should((time2) => {
+        expect(parseInt(time1.replace('3:',''))).to.be.lessThan(parseInt(time2.replace('3:','')));
         debugger
       });
     });

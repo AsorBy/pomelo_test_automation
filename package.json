@@ -14,11 +14,17 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^10.7.0",
+    "cypress-sql-server": "^1.0.0",
     "eslint": "^8.23.0",
     "gmail-tester-extended": "^1.1.2",
-    "jsdom": "^20.0.0"
+    "jsdom": "^20.0.0",
+    "mysql": "^2.18.1"
   },
   "dependencies": {
-    "extract-urls": "^1.3.2"
+    "@aws-sdk/client-redshift-data": "^3.180.0",
+    "bluebird": "^3.7.2",
+    "extract-urls": "^1.3.2",
+    "nodemailer": "^6.7.8",
+    "pg": "^8.8.0"
   }
 }

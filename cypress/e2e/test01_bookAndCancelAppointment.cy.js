@@ -14,7 +14,7 @@ describe("Appointment functionality", () => {
     const postalCode = "J0B1M0";
     const patient = "patientOne";
 
-    cy.log("WHEN: User goes to patien page");
+    cy.log("WHEN: User goes to patient page");
     app.patientInformationPage.navigate();
     cy.log("AND: User fills out the patient form and click Continue");
     app.patientInformationPage.fillInFormByPatientData(patient);
@@ -47,7 +47,7 @@ describe("Appointment functionality", () => {
     app.appointmentSelectionPage.pageLabel.should("be.visible");
 
     cy.log("When: User select another timeslot for appointment and provider");
-    app.appointmentSelectionPage.setAppoinmentByNumber(2);
+    app.appointmentSelectionPage.setAppoinmentByNumber(6);
     cy.log("Then: Review and book page is open");
     app.reviewAndBookPage.pageLabel.should("be.visible");
 
@@ -68,6 +68,7 @@ describe("Appointment functionality", () => {
     cy.log("Then: Message about cancel confirmation is displayed");
     app.appointmentCancellationPage.cancellationMessage.should("be.visible");
     cy.log("When: User clicks back to Home Page");
+    cy.pause()
     app.appointmentCancellationPage.backToHomePageButton.click();
     cy.log("Then: User is taken back to the patient information page");
     app.patientInformationPage.pageLabel.should("be.visible");

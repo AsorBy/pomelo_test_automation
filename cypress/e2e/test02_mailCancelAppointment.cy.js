@@ -18,7 +18,7 @@ describe("Email notifications", () => {
         cy.log("And: User search available appointment");
         app.patientInformationPage.reasonForVisitModal.searchForAvailabilitiesByCriteria(consultationType, postalCode)
         cy.log("And: User select first timeslot for appointment and provider");
-        app.appointmentSelectionPage.setAppoinmentByNumber(0);
+        app.appointmentSelectionPage.setAppointmentByDaysBefore(1);
         cy.log('When: User click "Book this appointment"');
         app.reviewAndBookPage.bookThisAppointmentButton.click();
         cy.log("Then: Confirmation of appointment is displayed");
@@ -36,7 +36,6 @@ describe("Email notifications", () => {
             bodyText: 'Cancel appointment',
             after: currentDate
         }).then(email => {
-            debugger
             cy.log("And: Open the \"Cancel appointment\" link within the email");
             const url = app.getUrlsFromEmail(email)[3]
             cy.intercept("POST", "/hub/GetAppointment").as("getAppointment");
@@ -44,7 +43,10 @@ describe("Email notifications", () => {
             cy.wait("@getAppointment").its("response.statusCode").should("eq", 200);
         })
         app.selectLanguage("English")
+
+        cy.log('And: User clicks "Cancel Appointment" button');
         app.appointmentCancellationPage.confirmCancelAppointmentButton.click();
+        cy.pause()
         cy.wait("@event").its("response.statusCode").should("eq", 200);
         cy.log("Then: Message about cancel confirmation is displayed");
         app.appointmentCancellationPage.cancellationMessage.should("be.visible");
